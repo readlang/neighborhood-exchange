@@ -9,28 +9,34 @@ User.destroy_all
 Tool.destroy_all
 Rental.destroy_all
 
+# resets the PK index counters so they start at 0
+ActiveRecord::Base.connection.reset_pk_sequence!('users')
+ActiveRecord::Base.connection.reset_pk_sequence!('tools')
+ActiveRecord::Base.connection.reset_pk_sequence!('rentals')
+
 User.create([
     { name: "Alice" },
     { name: "Bob" },
     { name: "Cathy" },
     { name: "Doug" },
-    { name: "Eduardo" }
+    { name: "Eduardo" },
+    { name: "Frankie" }
 ])
 
 Tool.create([
-    { name: "Lawnmower", brand: "Craftsman", owner_id: 1, notes: "very old but still works" },
-    { name: "Drill", brand: "Dewalt", owner_id: 2, notes: "brand new" },
-    { name: "Hammer", brand: "Ace", owner_id: 3, notes: "kinda crappy" },
-    { name: "Socket Wrench Set", brand: "Craftsman", owner_id: 4, notes: "high quality" },
-    { name: "Blower", brand: "Craftsman", owner_id: 5, notes: "very old but still works" },
-    { name: "Circular saw", brand: "Mikita", owner_id: 5, notes: "okay" },
+    { name: "Lawnmower", brand: "Ryobi", owner_id: 1, notes: "owned by alice" },
+    { name: "Drill", brand: "Dewalt",    owner_id: 2, notes: "owned by bob" },
+    { name: "Hammer", brand: "Milwakee", owner_id: 3, notes: "owned by cathy" },
+    { name: "Wrench Set", brand: "Ace",  owner_id: 4, notes: "owned by doug" },
+    { name: "Blower", brand: "Craftsman", owner_id: 5, notes: "owned by Eduardo" },
+    { name: "Tablesaw", brand: "Mikita", owner_id: 6, notes: "owned by Frankie" },
 ])
 
 Rental.create([
-    { tool_id: 3, borrower_id: 2, returned: false, borrower_notes: "Worked Great", owner_notes: "returned on time" },
-    { tool_id: 2, borrower_id: 4, returned: false, borrower_notes: "Worked Great", owner_notes: "returned on time" },
-    { tool_id: 1, borrower_id: 3, returned: false, borrower_notes: "Worked Great", owner_notes: "returned on time" },
+    { tool_id: 1, borrower_id: 6, returned: false, borrower_notes: "Worked Great", owner_notes: "returned on time" },
+    { tool_id: 2, borrower_id: 5, returned: false, borrower_notes: "Worked Great", owner_notes: "returned on time" },
+    { tool_id: 3, borrower_id: 4, returned: false, borrower_notes: "Worked Great", owner_notes: "returned on time" },
     { tool_id: 4, borrower_id: 3, returned: false, borrower_notes: "Worked Great", owner_notes: "returned on time" },
-    { tool_id: 6, borrower_id: 1, returned: false, borrower_notes: "Worked Great", owner_notes: "returned on time" },
-    { tool_id: 5, borrower_id: 4, returned: false, borrower_notes: "Worked Great", owner_notes: "returned on time" }
+    { tool_id: 5, borrower_id: 2, returned: false, borrower_notes: "Worked Great", owner_notes: "returned on time" },
+    { tool_id: 6, borrower_id: 1, returned: false, borrower_notes: "Worked Great", owner_notes: "returned on time" }
 ])

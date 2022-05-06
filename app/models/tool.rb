@@ -1,8 +1,10 @@
 class Tool < ApplicationRecord
+    # similar to Post
 
-    has_many :rentals
+    has_many :rentals    
+    
+    has_many :borrowers, through: :rentals
+
     belongs_to :owner, class_name: "User"
-
-    has_many :borrowers, class_name: "User", through: :rentals
 
 end
