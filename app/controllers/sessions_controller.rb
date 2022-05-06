@@ -1,0 +1,21 @@
+class SessionsController < ApplicationController
+    # skip_before_action :authorize, only: :create
+
+    # for logins - creates a session cookie
+    def create
+        user = User.find_by(username: params[:username])
+        if user&.authenticate(params[:password])
+            sesssion[:user_id] = user.id
+            render json: user, status: :created
+        else
+            render json: {error: "Invalid username or password"}, status: :unauthorized
+        end
+    end
+
+    # for logouts - deletes a session cookie
+    def destroy
+        session.delete :user_id
+        head :no_content
+    end
+
+end
