@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-    has_secure_password
+    has_secure_password #used for Bcrypt to save pw as password_digest
 
     has_many :rentals, foreign_key: :borrower_id 
 

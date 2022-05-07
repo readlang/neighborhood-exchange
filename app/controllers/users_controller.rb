@@ -1,6 +1,11 @@
 class UsersController < ApplicationController
-    # does this need a skip_before_action?
+    
     # skip_before_action :authorize, only: :create
+
+    # delete before deploying!!! - this shows all the users
+    def index
+        render json: User.all, status: :ok
+    end
 
     # for new signups - creates new user and sets session
     def create

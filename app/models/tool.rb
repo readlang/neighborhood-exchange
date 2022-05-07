@@ -1,5 +1,4 @@
 class Tool < ApplicationRecord
-    # similar to Post
 
     has_many :rentals    
     
