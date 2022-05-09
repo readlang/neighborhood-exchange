@@ -9,7 +9,7 @@ class UsersController < ApplicationController
 
     # for new signups - creates new user and sets session
     def create
-        user = User.create(params.permit(:name, :password, :password_confirmation))
+        user = User.create(params.permit(:username, :password, :password_confirmation))
         if user.valid?
             session[:user_id] = user.id
             render json: user, status: :created
