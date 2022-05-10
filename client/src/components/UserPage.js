@@ -1,8 +1,6 @@
 import {useState} from "react"
-
 import LogInForm from "./LogInForm"
 import SignupForm from "./SignUpForm"
-
 import logo from "../NEX logo.svg"
 
 const centerXY = {
@@ -34,7 +32,18 @@ function UserPage() {
     .then(d => console.log(d) )
   }
 
-
+  function handleSignUp(username, password, passwordConfirm, image, location) {
+    console.log(username, password, passwordConfirm, image, location);
+    fetch("/signup", { // check this over
+      method: 'post',
+      headers: { 'content-type': 'application/json'},
+      body: JSON.stringify({username: username, password: password,
+        password_confirmation: passwordConfirm //, image: image, location: location // these key names aren't the ones from the backend
+      })
+    })
+    .then(r => r.json())
+    .then(d => console.log(d) )
+  }
 
   return (
     <div style = {centerXY}> 
@@ -44,7 +53,8 @@ function UserPage() {
         </div> 
       </div>
       <div style = {boxSize} >
-        { showLogIn ? <LogInForm setShowLogIn={setShowLogIn} handleLogIn={handleLogIn} /> : <SignupForm/> }
+        { showLogIn ? <LogInForm setShowLogIn={setShowLogIn} handleLogIn={handleLogIn} /> : 
+          <SignupForm handleSignUp={handleSignUp} /> }
       </div>
     </div> 
   )
