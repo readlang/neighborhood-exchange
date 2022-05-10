@@ -1,8 +1,9 @@
 import {useState} from "react"
 
+import LogInForm from "./LogInForm"
+import SignupForm from "./SignUpForm"
+
 import logo from "../NEX logo.svg"
-import Button from "react-bootstrap/Button";    
-import Form from "react-bootstrap/Form";    
 
 const centerXY = {
   height: "100%",
@@ -16,76 +17,33 @@ const boxSize = {
   height: "400px",
   width: "400px",
   backgroundColor: "rgb(255, 255, 255)",
+  padding: "30px"
 }
 
 function UserPage() {
-  const [showSignup, setShowSignup] = useState(false);
+  const [showLogIn, setShowLogIn] = useState(true);
 
-  function logInForm() {
-    return(
-      <Form style = {{padding: "30px"}}>
-        <Form.Label >Please log in</Form.Label>
-        <Form.Group className="mb-3" controlId="formBasicEmail">
-          <Form.Control type="email" placeholder="Username" />
-        </Form.Group>
-
-        <Form.Group className="mb-3" controlId="formBasicPassword">
-          <Form.Control type="password" placeholder="Password" />
-        </Form.Group>
-
-        <Button variant="primary" type="submit">
-          Log in
-        </Button>
-        <br/> <hr/> <br/>
-        <Button variant="success" onClick={() => setShowSignup(true)} >
-          Sign up for account
-        </Button>
-      </Form>
-    )
+  function handleLogIn(username, password) {
+    fetch("http://localhost:3000/login", {
+      method: 'POST',
+      headers: { 'content-type': 'application/json'},
+      body: JSON.stringify({username: username, password: password})
+    })
+    .then(r => r.json())
+    .then(d => console.log(d) )
   }
 
-  function signupForm() {
-    return(
-      <Form style = {{padding: "30px"}}>
-        <Form.Label >Sign up for account</Form.Label>
-        <Form.Group className="mb-3" controlId="formBasicEmail">
-          <Form.Control type="email" placeholder="Username" />
-        </Form.Group>
 
-        <Form.Group className="mb-3" controlId="formBasicPassword">
-          <Form.Control type="password" placeholder="Password" />
-        </Form.Group>
-
-        <Form.Group className="mb-3" controlId="formBasicPassword">
-          <Form.Control type="password" placeholder="Confirm Password" />
-        </Form.Group>
-
-        <Form.Group className="mb-3" controlId="formBasicPassword">
-          <Form.Control type="password" placeholder="Profile image link" />
-        </Form.Group>
-
-        <Form.Group className="mb-3" controlId="formBasicPassword">
-          <Form.Control type="password" placeholder="Location" />
-        </Form.Group>
-
-        <Button variant="primary" type="submit">
-          Sign up
-        </Button>
-        
-      </Form>
-    )
-  }
 
   return (
-    <div style = {centerXY}>
+    <div style = {centerXY}> 
       <div style= {boxSize}>
         <div style= {centerXY}>
           <img src={logo} alt="logo" />
         </div> 
       </div>
       <div style = {boxSize} >
-        { showSignup ? signupForm() : logInForm() }
-        
+        { showLogIn ? <LogInForm setShowLogIn={setShowLogIn} handleLogIn={handleLogIn} /> : <SignupForm/> }
       </div>
     </div> 
   )

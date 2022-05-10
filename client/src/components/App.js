@@ -17,38 +17,31 @@ function App() {
 
 
   if (logIn === false) {
-    return (
-      <UserPage />
-    )  
+    return (<UserPage />)  
   } else {
-     
-  return (
-    <div className="App">
+    return (
+      <div className="App">
 
+        <header>
+        This is the Header.
+        </header>
+        
+        <Switch>
+          <Route exact path="/">
+            <p> Welcome.  Here is the logged in landing. </p>
+          </Route>
 
+          <Route exact path="/my_tools">
+            <p> Here are my tools</p>
 
+            <button>This is an unstyled button</button>
+            <Button>This is a Button</Button>
 
-      <header>
-      This is the Header.
-      </header>
-      
-      <Switch>
+          </Route>
+        </Switch>  
 
-        <Route exact path="/">
-          <p> Welcome.  Here is the logged in landing. </p>
-        </Route>
-
-        <Route exact path="/my_tools">
-          <p> Here are my tools</p>
-
-          <button>This is an unstyled button</button>
-          <Button>This is a Button</Button>
-
-        </Route>
-      </Switch>  
-
-    </div>
-  );
+      </div>
+    );
   }
 }
 
