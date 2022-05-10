@@ -24,8 +24,9 @@ function UserPage() {
   const [showLogIn, setShowLogIn] = useState(true);
 
   function handleLogIn(username, password) {
-    fetch("http://localhost:3000/login", {
-      method: 'POST',
+    console.log(username, password);
+    fetch("/login", {
+      method: 'post',
       headers: { 'content-type': 'application/json'},
       body: JSON.stringify({username: username, password: password})
     })
