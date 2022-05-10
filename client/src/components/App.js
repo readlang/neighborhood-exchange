@@ -1,5 +1,7 @@
-import React, {useState, useEffect} from "react"
+import {useState, useEffect} from "react"
 import { Switch, Route } from "react-router-dom";  // uses react-router-dom@5 (version 5) to use switch
+
+import UserPage from "./UserPage";
 
 import Button from "react-bootstrap/Button";    // prefered way to import react bootstrap components
 
@@ -7,13 +9,16 @@ import Button from "react-bootstrap/Button";    // prefered way to import react 
 function App() {
   const [logIn, setLogIn ] = useState( false );
 
-
+  // useEffect(() =>{
+  //   fetch("http://localhost:9292/rooms")
+  //   .then(r => r.json())
+  //   .then(d => setRoomListData(d))
+  // }, [])
 
 
   if (logIn === false) {
     return (
-      <> Not logged in!
-      </>
+      <UserPage />
     )  
   } else {
      
