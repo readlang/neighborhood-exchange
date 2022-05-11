@@ -3,6 +3,7 @@ import { Switch, Route } from "react-router-dom";  // uses react-router-dom@5 (v
 
 import UserPage from "./UserPage";
 import Header from "./Header";
+import Neighborhood from "./Neighborhood";
 
 function App() {
   const [user, setUser] = useState({});
@@ -28,12 +29,10 @@ function App() {
   } else {
     return (
       <div className="App">
-
         <Header logOut={logOut}  />
-        
         <Switch>
           <Route exact path="/">
-            <p>This is the neighborhood </p>
+            <Neighborhood />
           </Route>
 
           <Route exact path="/rentals">
@@ -42,10 +41,8 @@ function App() {
 
           <Route exact path="/tools">
             <p> Here are my tools</p>
-            
           </Route>
         </Switch>  
-
       </div>
     );
   }
