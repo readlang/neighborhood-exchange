@@ -29,7 +29,7 @@ function UserPage() {
       body: JSON.stringify({username: username, password: password})
     })
     .then(r => r.json())
-    .then(d => console.log(d) )
+    .then(d => console.log(d) )  // start here with logic
   }
 
   function handleSignUp(username, password, passwordConfirm, image, location) {
@@ -42,7 +42,7 @@ function UserPage() {
       })
     })
     .then(r => r.json())
-    .then(d => console.log(d) )
+    .then(d => console.log(d) )  // start here with logic
   }
 
   return (

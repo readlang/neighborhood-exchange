@@ -8,15 +8,18 @@ import Button from "react-bootstrap/Button";    // prefered way to import react 
 
 function App() {
   const [logIn, setLogIn ] = useState( false );
+  const [user, setUser] = useState({});
+  console.log(user)
 
-  // useEffect(() =>{
-  //   fetch("http://localhost:9292/rooms")
-  //   .then(r => r.json())
-  //   .then(d => setRoomListData(d))
-  // }, [])
+  //  for return visits - checks for existing session cookie
+  useEffect(() =>{
+    fetch("/me")
+    .then(r => r.json())
+    .then(d => setUser(d)) //this will return user
+  }, [])
 
 
-  if (logIn === false) {
+  if (!user.id) {
     return (<UserPage />)  
   } else {
     return (

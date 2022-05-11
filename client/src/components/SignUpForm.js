@@ -29,7 +29,7 @@ function SignUpForm({handleSignUp}) {
       </Form.Group>
 
       <Form.Group className="mb-3" controlId="formBasicPasswordConfirm">
-        <Form.Control type="input" placeholder="Confirm Password" 
+        <Form.Control type="password" placeholder="Confirm Password" 
         value={passwordConfirm} onChange={e=> setPasswordConfirm(e.target.value)} />
       </Form.Group>
 
