@@ -54,7 +54,7 @@ function UserPage({setUser}) {
       </div>
       <div style = {boxSize} >
         { showLogIn ? <LogInForm setShowLogIn={setShowLogIn} handleLogIn={handleLogIn} /> : 
-          <SignupForm handleSignUp={handleSignUp} /> }
+          <SignupForm setShowLogIn={setShowLogIn} handleSignUp={handleSignUp} /> }
       </div>
     </div> 
   )

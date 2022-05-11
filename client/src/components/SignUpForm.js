@@ -2,7 +2,7 @@ import {useState} from "react"
 import Button from "react-bootstrap/Button";    
 import Form from "react-bootstrap/Form";    
 
-function SignUpForm({handleSignUp}) {
+function SignUpForm({setShowLogIn, handleSignUp}) {
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
   const [passwordConfirm, setPasswordConfirm] = useState("")
@@ -46,6 +46,11 @@ function SignUpForm({handleSignUp}) {
       <Button variant="primary" type="submit">
         Sign up
       </Button>
+      &emsp; 
+      <Button variant="outline-secondary" onClick={() => setShowLogIn(true)}  type="input">
+        Back to Log in
+      </Button>
+
     </Form>
   )
 }

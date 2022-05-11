@@ -29,7 +29,7 @@ function LogInForm({setShowLogIn, handleLogIn}) {
       <Button variant="primary" type="submit" > Log in </Button>
       <br/> <hr/> <br/>
 
-      <Button variant="success" onClick={() => setShowLogIn(false)} >
+      <Button variant="outline-success" onClick={() => setShowLogIn(false)} >
         Sign up for account
       </Button>
 
