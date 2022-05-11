@@ -34,7 +34,7 @@ function UserPage({setUser}) {
 
   function handleSignUp(username, password, passwordConfirm, image, location) {
     console.log(username, password, passwordConfirm, image, location);
-    fetch("/signup", { // check this over
+    fetch("/signup", { 
       method: 'post',
       headers: { 'content-type': 'application/json'},
       body: JSON.stringify({username: username, password: password,

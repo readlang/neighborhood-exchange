@@ -2,6 +2,7 @@ import {useState, useEffect} from "react"
 import { Switch, Route } from "react-router-dom";  // uses react-router-dom@5 (version 5) to use switch
 
 import UserPage from "./UserPage";
+import Header from "./Header";
 
 function App() {
   const [user, setUser] = useState({});
@@ -13,22 +14,33 @@ function App() {
     .then(d => setUser(d)) //this will return user
   }, [])
 
+  function logOut() {
+    console.log("logout")
+    fetch("/logout", {
+      method: 'delete',
+      headers: { 'content-type': 'application/json'},
+    })
+    .then(setUser({})) 
+  }
+
   if ( !user.id ) {
     return (<UserPage setUser={setUser} />)  
   } else {
     return (
       <div className="App">
 
-        <header>
-        This is the Header.
-        </header>
+        <Header logOut={logOut}  />
         
         <Switch>
           <Route exact path="/">
-            <p> Welcome.  Here is the logged in landing. </p>
+            <p>This is the neighborhood </p>
           </Route>
 
-          <Route exact path="/my_tools">
+          <Route exact path="/rentals">
+            <p> Here are your rentals </p>
+          </Route>
+
+          <Route exact path="/tools">
             <p> Here are my tools</p>
             
           </Route>
