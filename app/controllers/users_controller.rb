@@ -7,7 +7,7 @@ class UsersController < ApplicationController
         render json: User.all, status: :ok
     end
 
-    # for new signups - creates new user and sets session
+    # SignUp - creates new user and sets session
     def create
         user = User.create(params.permit(:username, :password, :password_confirmation))
         if user.valid?
@@ -18,7 +18,7 @@ class UsersController < ApplicationController
         end
     end
 
-    # for return visits - checks for existing session cookie
+    # return visits - checks for existing session cookie
     def show
         user = User.find_by(id: session[:user_id])
         if user

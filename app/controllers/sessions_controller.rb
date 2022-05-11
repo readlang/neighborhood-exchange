@@ -1,7 +1,7 @@
 class SessionsController < ApplicationController
     # skip_before_action :authorize, only: :create
 
-    # for logins - creates a session cookie
+    # LogIn - creates a session cookie
     def create
         user = User.find_by(username: params[:username])
         if user&.authenticate(params[:password])
@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
         end
     end
 
-    # for logouts - deletes a session cookie
+    # LogOut - deletes a session cookie
     def destroy
         session.delete :user_id
         head :no_content
