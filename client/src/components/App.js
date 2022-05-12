@@ -4,6 +4,7 @@ import { Switch, Route } from "react-router-dom";  // uses react-router-dom@5 (v
 import UserPage from "./UserPage";
 import NavBar from "./NavBar";
 import Neighborhood from "./Neighborhood";
+import Rentals from "./Rentals";
 
 function App() {
   const [user, setUser] = useState({});
@@ -36,7 +37,7 @@ function App() {
           </Route>
 
           <Route exact path="/rentals">
-            <p> Here are your rentals </p>
+            <Rentals />
           </Route>
 
           <Route exact path="/tools">

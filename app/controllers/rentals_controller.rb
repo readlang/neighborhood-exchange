@@ -1,7 +1,8 @@
 class RentalsController < ApplicationController
 
     def index
-        render json: Rental.all, status: :ok
+        rentals = Rental.all
+        render json: rentals, status: :ok
     end
 
 end

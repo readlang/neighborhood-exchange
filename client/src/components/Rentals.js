@@ -8,19 +8,19 @@ const list = {
     justifyContent: "center",
 }
 
-function Neighborhood() {
-    const [tools, setTools] = useState([])
+function Rentals() {
+    const [rentals, setRentals] = useState([])
 
     useEffect(() =>{
-        fetch("/tools")
+        fetch("/rentals")
         .then(r => r.json())
-        .then(d => setTools(d))
+        .then(d => setRentals(d))
     }, [])
 
     return(
         <div style={list} > 
-            {tools.map(tool => <ToolCard tool={tool} key={tool.id} /> ) }
+            {rentals.map(rental => <ToolCard tool={rental} key={rental.id} /> ) }
         </div>
     )
 }
-export default Neighborhood;
+export default Rentals;
