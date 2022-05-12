@@ -2,7 +2,7 @@ import {useState, useEffect} from "react"
 import { Switch, Route } from "react-router-dom";  // uses react-router-dom@5 (version 5) to use switch
 
 import UserPage from "./UserPage";
-import Header from "./Header";
+import NavBar from "./NavBar";
 import Neighborhood from "./Neighborhood";
 
 function App() {
@@ -29,7 +29,7 @@ function App() {
   } else {
     return (
       <div className="App">
-        <Header logOut={logOut}  />
+        <NavBar user={user} logOut={logOut}  />
         <Switch>
           <Route exact path="/">
             <Neighborhood />

@@ -24,7 +24,7 @@ const navStyle = {
     justifyContent: "space-between",
 }
 
-function Header({logOut}) {
+function NavBar({user, logOut}) {
     return(
         <div id="navBar" style={navStyle} >
             <div style={{padding: "0 0 0 20px" }} >
@@ -37,7 +37,7 @@ function Header({logOut}) {
                     style={navNonActiveStyle}
                     activeStyle={navActiveStyle}
                 >
-                Neighborhood
+                Neighborhood Tools
                 </NavLink>
 
                 <NavLink
@@ -45,7 +45,7 @@ function Header({logOut}) {
                     style={navNonActiveStyle}
                     activeStyle={navActiveStyle} 
                 >
-                Rentals
+                My Rentals
                 </NavLink>
 
                 <NavLink
@@ -58,9 +58,10 @@ function Header({logOut}) {
             </div>   
 
             <div style={{padding: "0 5vw 0 0" }} >
+                <span style={{color: "gray"}}>Hi, {user.username} &ensp; </span>
                 <Button variant="outline-light" size="sm" type="submit" onClick={logOut}  >Log out</Button>
             </div>
         </div>
     )
 }
-export default Header;
+export default NavBar;
