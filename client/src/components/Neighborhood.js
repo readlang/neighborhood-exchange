@@ -1,9 +1,18 @@
 import {useState, useEffect} from "react"
-import Button from "react-bootstrap/Button";
 
+import Row from "react-bootstrap/Row";
+import ToolCard from "./ToolCard"
+
+const list = {
+    
+    width: "100vw",
+    display: "flex",
+    justifyContent: "center",
+    
+}
 
 function Neighborhood() {
-    const [tools, setTools] = useState()
+    const [tools, setTools] = useState([])
 
     useEffect(() =>{
         fetch("/tools")
@@ -13,9 +22,12 @@ function Neighborhood() {
 
     console.log(tools)
 
+    // this is not working yet
     return(
-        <div  >
-            neighborhood
+        <div style={list} >
+            <Row xs={1} md={2} className="g-4">
+            {tools.map(tool => <ToolCard tool={tool} key={tool.id} /> ) }
+            </Row>
         </div>
     )
 }
