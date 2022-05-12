@@ -5,17 +5,21 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: rgb(240, 242, 245);
 }
 
 #root {
-  height: 100vh;
+  /* height: 100vh; */
+  background-color: rgb(240, 242, 245);
+}
+
+html {
+  
   background-color: rgb(240, 242, 245);
 }
 
 
-
-
-
+/* 
 header {
   background-color: #282c34;
   display: flex;
@@ -25,4 +29,4 @@ header {
   font-size: calc(10px + 2vmin);
   color: white;
 }
-
+ */

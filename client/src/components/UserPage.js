@@ -46,15 +46,17 @@ function UserPage({setUser}) {
   }
 
   return (
-    <div style = {centerXY}> 
-      <div style= {boxSize}>
-        <div style= {centerXY}>
-          <img src={logo} alt="logo" />
-        </div> 
-      </div>
-      <div style = {boxSize} >
-        { showLogIn ? <LogInForm setShowLogIn={setShowLogIn} handleLogIn={handleLogIn} /> : 
-          <SignupForm setShowLogIn={setShowLogIn} handleSignUp={handleSignUp} /> }
+    <div style = {{height: "100vh"}}>
+      <div style = {centerXY}> 
+        <div style= {boxSize}>
+          <div style= {centerXY}>
+            <img src={logo} alt="logo" />
+          </div> 
+        </div>
+        <div style = {boxSize} >
+          { showLogIn ? <LogInForm setShowLogIn={setShowLogIn} handleLogIn={handleLogIn} /> : 
+            <SignupForm setShowLogIn={setShowLogIn} handleSignUp={handleSignUp} /> }
+        </div>
       </div>
     </div> 
   )

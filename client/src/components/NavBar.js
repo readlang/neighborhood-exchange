@@ -17,6 +17,9 @@ const navActiveStyle = {
 }
 
 const navStyle = {
+    position: "sticky",
+    top: "0",
+    zIndex: "1000",
     background: "rgb(33, 37, 41)",
     height: "55px",
     display: "flex",
@@ -26,7 +29,7 @@ const navStyle = {
 
 function NavBar({user, logOut}) {
     return(
-        <div id="navBar" style={navStyle} >
+        <header id="navBar" style={navStyle} >
             <div style={{padding: "0 0 0 20px" }} >
                 <NavLink to="/" exact >
                     <img alt="logo" src={logo} width="30" height="30" className="d-inline-block align-top" />
@@ -61,7 +64,7 @@ function NavBar({user, logOut}) {
                 <span style={{color: "gray"}}>Hi, {user.username} &ensp; </span>
                 <Button variant="outline-light" size="sm" type="submit" onClick={logOut}  >Log out</Button>
             </div>
-        </div>
+        </header>
     )
 }
 export default NavBar;

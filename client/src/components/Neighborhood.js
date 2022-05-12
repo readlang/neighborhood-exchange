@@ -4,11 +4,10 @@ import Row from "react-bootstrap/Row";
 import ToolCard from "./ToolCard"
 
 const list = {
-    
-    width: "100vw",
+    margin: "20px 0 0 0",
     display: "flex",
+    flexWrap: "wrap",
     justifyContent: "center",
-    
 }
 
 function Neighborhood() {
@@ -20,14 +19,15 @@ function Neighborhood() {
         .then(d => setTools(d))
     }, [])
 
-    console.log(tools)
-
-    // this is not working yet
     return(
-        <div style={list} >
-            <Row xs={1} md={2} className="g-4">
+        // <div> {/*style={list}*/} 
+        //     <Row xs={1} sm={2} md={3} lg={4} xl={5} xxl={6} className="g-4">
+        //     {tools.map(tool => <ToolCard tool={tool} key={tool.id} /> ) }
+        //     </Row>
+        // </div>
+
+        <div style={list} > 
             {tools.map(tool => <ToolCard tool={tool} key={tool.id} /> ) }
-            </Row>
         </div>
     )
 }
