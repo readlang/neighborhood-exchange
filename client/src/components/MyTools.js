@@ -1,5 +1,6 @@
 import {useState, useEffect} from "react"
 import ToolCard from "./ToolCard"
+import AddToolCard from "./AddToolCard"
 
 const list = {
     margin: "20px 0 0 0",
@@ -8,19 +9,20 @@ const list = {
     justifyContent: "center",
 }
 
-function Neighborhood({user}) {
-    const [tools, setTools] = useState([])
+function MyTools({user}) {
+    const [myTools, setMyTools] = useState([])
 
     useEffect(() =>{
-        fetch("/tools")
+        fetch(`/users/${user.id}/tools`)
         .then(r => r.json())
-        .then(d => setTools(d))
+        .then(d => setMyTools(d))
     }, [])
 
     return(
         <div style={list} > 
-            {tools.map(tool => <ToolCard tool={tool} key={tool.id} user={user} /> ) }
+            <AddToolCard/>
+            {myTools.map(rental => <ToolCard tool={rental} key={rental.id} /> ) }
         </div>
     )
 }
-export default Neighborhood;
+export default MyTools;

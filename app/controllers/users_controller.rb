@@ -9,7 +9,7 @@ class UsersController < ApplicationController
 
     # SignUp - creates new user and sets session
     def create
-        user = User.create(params.permit(:username, :password, :password_confirmation))
+        user = User.create(user_params)
         if user.valid?
             session[:user_id] = user.id
             render json: user, status: :created
@@ -31,15 +31,18 @@ class UsersController < ApplicationController
     # patch /users/:id
     def update
         user = User.find_by(id: params[:id])
-        user.update(user_params)
+        user.update(edit_params)
         render json: user, status: :ok
     end
 
     private
 
     def user_params
-        params.permit(:profile_image, :location)
-        
+        params.permit(:username, :password, :password_confirmation, :profile_image, :location)
+    end
+
+    def edit_params
+        params.permit(:profile_image, :location) 
     end
 
 end

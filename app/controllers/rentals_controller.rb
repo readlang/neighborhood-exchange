@@ -17,8 +17,13 @@ class RentalsController < ApplicationController
     def user_lent
         user = User.find_by(id: params[:user_id])
         owned_tools = user.tools #returns a "collection"
-        lent = owned_tools.rentals #goes astray - need some sort of loop
-        render json: lent, status: :ok
+        lent_tools = []
+        owned_tools.each do |tool|
+            tool.rentals.each do |rental|
+                lent_tools.push( rental )
+            end
+        end
+        render json: lent_tools, status: :ok
     end
 
 

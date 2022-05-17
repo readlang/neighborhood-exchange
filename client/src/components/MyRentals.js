@@ -8,7 +8,7 @@ const list = {
     justifyContent: "center",
 }
 
-function Rentals() {
+function MyRentals() {
     const [rentals, setRentals] = useState([])
 
     useEffect(() =>{
@@ -23,4 +23,4 @@ function Rentals() {
         </div>
     )
 }
-export default Rentals;
+export default MyRentals;

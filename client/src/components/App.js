@@ -4,7 +4,8 @@ import { Switch, Route } from "react-router-dom";  // uses react-router-dom@5 (v
 import UserPage from "./UserPage";
 import NavBar from "./NavBar";
 import Neighborhood from "./Neighborhood";
-import Rentals from "./Rentals";
+import MyRentals from "./MyRentals";
+import MyTools from "./MyTools"
 
 function App() {
   const [user, setUser] = useState({});
@@ -33,15 +34,15 @@ function App() {
         <NavBar user={user} logOut={logOut}  />
         <Switch>
           <Route exact path="/">
-            <Neighborhood />
+            <Neighborhood user={user} />
           </Route>
 
           <Route exact path="/rentals">
-            <Rentals />
+            <MyRentals user={user} />
           </Route>
 
           <Route exact path="/tools">
-            <p> Here are my tools</p>
+            < MyTools user={user} />
           </Route>
         </Switch>  
       </div>
