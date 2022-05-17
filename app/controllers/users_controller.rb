@@ -28,4 +28,18 @@ class UsersController < ApplicationController
         end
     end
 
+    # patch /users/:id
+    def update
+        user = User.find_by(id: params[:id])
+        user.update(user_params)
+        render json: user, status: :ok
+    end
+
+    private
+
+    def user_params
+        params.permit(:profile_image, :location)
+        
+    end
+
 end
