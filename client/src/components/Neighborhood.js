@@ -2,10 +2,11 @@ import {useState, useEffect} from "react"
 import ToolCard from "./ToolCard"
 
 const list = {
-    margin: "20px 0 0 0",
+    margin: "20px auto 0 auto", //auto = centered horizontally
     display: "flex",
     flexWrap: "wrap",
     justifyContent: "center",
+    maxWidth: "900px"
 }
 
 function Neighborhood({user}) {
