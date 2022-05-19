@@ -21,7 +21,7 @@ class ToolsController < ApplicationController
 
     # patch /tools/:id - update a tool
     def update
-        tool = Tool.find_by(id: params[:id])
+        tool = Tool.find_by(id: params[:id].to_i) # trying stuff
         tool.update(tool_params)
         render json: tool, status: :ok
     end
@@ -30,7 +30,7 @@ class ToolsController < ApplicationController
     def destroy
         tool = Tool.find_by(id: params[:id])
         tool.destroy
-        render json: {tool: "deleted"}, status: :no_content
+        render json: {deleted: tool}, status: :ok
     end
 
     private

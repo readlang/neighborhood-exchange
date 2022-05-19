@@ -1,6 +1,5 @@
 import {useState, useEffect} from "react"
-import ToolCard from "./ToolCard"
-import AddToolCard from "./AddToolCard"
+import MyToolCard from "./MyToolCard"
 
 const list = {
     margin: "20px auto 0 auto",
@@ -22,8 +21,8 @@ function MyTools({user}) {
 
     return(
         <div style={list} > 
-            <AddToolCard user={user} setReload={setReload}/>
-            {myTools.map(rental => <ToolCard tool={rental} key={rental.id} /> ) }
+            <MyToolCard user={user} setReload={setReload}/>
+            {myTools.map(tool => <MyToolCard tool={tool} key={tool.id} setReload={setReload} /> ) }
         </div>
     )
 }
