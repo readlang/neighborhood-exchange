@@ -11,7 +11,11 @@ const list = {
 
 function MyTools({user}) {
     const [myTools, setMyTools] = useState([]);
-    const [reload, setReload] = useState(0);
+    const [reload, setReload] = useState({});
+
+    function triggerUpdate() {
+        setReload({...reload})
+    }
 
     useEffect(() =>{
         fetch(`/users/${user.id}/tools`)
@@ -21,8 +25,8 @@ function MyTools({user}) {
 
     return(
         <div style={list} > 
-            <MyToolCard user={user} setReload={setReload}/>
-            {myTools.map(tool => <MyToolCard tool={tool} key={tool.id} setReload={setReload} /> ) }
+            <MyToolCard user={user} triggerUpdate={triggerUpdate}/>
+            {myTools.map(tool => <MyToolCard tool={tool} key={tool.id} triggerUpdate={triggerUpdate} /> ) }
         </div>
     )
 }
