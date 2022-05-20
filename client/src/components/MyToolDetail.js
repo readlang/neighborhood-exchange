@@ -15,7 +15,6 @@ function MyVerticallyCenteredModal({props, user, triggerUpdate, tool}) {
   const [brand, setBrand] = useState( tool.brand ? tool.brand : "" )
   const [image, setImage] = useState( tool.image ? tool.image : "" )
   const [notes, setNotes] = useState( tool.notes ? tool.notes : "" )
-  console.log(props)
 
   function handleSaveTool() {
     fetch("/tools", {

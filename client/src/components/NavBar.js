@@ -1,6 +1,8 @@
 import Button from "react-bootstrap/Button";
 import logo from "../NEX logo.svg"    
 import { NavLink } from "react-router-dom";
+import {useState} from "react";
+import UserEdit from "./UserEdit";
 
 const navNonActiveStyle = {
     display: "inline-block",
@@ -28,6 +30,8 @@ const navStyle = {
 }
 
 function NavBar({user, logOut}) {
+    const [modalShow, setModalShow] = useState(false);
+
     return(
         <header id="navBar" style={navStyle} >
             <div style={{padding: "0 0 0 20px" }} >
@@ -61,10 +65,21 @@ function NavBar({user, logOut}) {
             </div>   
 
             <div style={{padding: "0 5vw 0 0" }} >
-                <span style={{color: "gray"}}>Hi, {user.username} &ensp; </span>
+                <Button variant="outline" size="sm" style={{color: "gray"}} 
+                    onClick={() => setModalShow(true)}> Hi, {user.username} ▼ 
+                </Button>
+
+                <UserEdit
+                    props={ {show: modalShow, onHide: () => setModalShow(false) } }
+                    user={user} 
+                />
+
+                &emsp;
                 <Button variant="outline-light" size="sm" type="submit" onClick={logOut}  >Log out</Button>
             </div>
         </header>
     )
 }
 export default NavBar;
+
+//▽▼🔽
