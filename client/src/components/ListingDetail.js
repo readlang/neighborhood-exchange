@@ -4,7 +4,7 @@ import Button from "react-bootstrap/Button";
 import Image from 'react-bootstrap/Image'
 const image = "https://media.istockphoto.com/photos/cordless-yellow-power-drill-isolated-on-a-white-background-picture-id184294297?b=1&k=20&m=184294297&s=170667a&w=0&h=0vSkHk1oHhoVez2poCNRo5dtg7c7W4ACgLxF-PoYiW8="
 
-function handleRental(tool, user) {
+function handleRental(tool, user, onHide) {
   console.log("rent this tool", tool)
 
   fetch("/rentals", {
@@ -14,8 +14,7 @@ function handleRental(tool, user) {
   })
   .then(r => r.json())
   .then(data => console.log(data) )  
-
-
+  onHide()
 
 }
 
@@ -41,7 +40,7 @@ function MyVerticallyCenteredModal(props) {
           <Image src={image} fluid={true}/>
         </Modal.Body>
         <Modal.Footer>
-            <Button onClick={()=>handleRental(props.tool, props.user ) }>&nbsp; Rent this tool &nbsp;</Button> 
+            <Button onClick={()=>handleRental(props.tool, props.user, props.onHide ) }>&nbsp; Rent this tool &nbsp;</Button> 
           <Button variant="outline-secondary" onClick={props.onHide}>Close</Button> 
         </Modal.Footer>
       </Modal>

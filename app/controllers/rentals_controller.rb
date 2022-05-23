@@ -6,14 +6,14 @@ class RentalsController < ApplicationController
         render json: rentals, status: :ok
     end
 
-    # get "/users/:user_id/borrowed"
+    # get "/users/:user_id/borrowed" - gets Borrowed rentals - uses custom serializer
     def user_borrowed
         user = User.find_by(id: params[:user_id])
         borrowed = user.rentals
         render json: borrowed, status: :ok
     end
 
-    # get "/users/:user_id/lent"
+    # get "/users/:user_id/lent" - gets Lended rentals
     def user_lent
         user = User.find_by(id: params[:user_id])
         owned_tools = user.tools #returns a "collection"
