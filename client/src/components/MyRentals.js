@@ -40,11 +40,12 @@ function MyRentals({user}) {
         <>
             <h2 style={title}>Borrowed from Neighbors</h2>
             <div style={list} > 
-                {borrowed.map(rental => <MyRentalCard key={rental.id} rental={rental} user={user}  /> ) }
+                {borrowed.map(rental => <MyRentalCard key={rental.id} rental={rental} role="borrower" /> ) }
             </div>
+
             <h2 style={title}>Lent out to Neighbors</h2>
             <div style={list} > 
-                {lentOut.map(rental => <MyRentalCard key={rental.id} rental={rental} user={user} /> ) }
+                {lentOut.map(rental => <MyRentalCard key={rental.id} rental={rental} role="lender" /> ) }
             </div>
         </>
     )
