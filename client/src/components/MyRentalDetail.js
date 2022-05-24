@@ -29,13 +29,13 @@ function MyVerticallyCenteredModal(props) {
     
     <Modal.Header closeButton>
       <Modal.Title id="contained-modal-title-vcenter">
-        {props.rental.name}
+        {props.rental.tool.name}
       </Modal.Title>
     </Modal.Header>
     <Modal.Body>
-      <h4>{props.rental.brand}</h4>
+      <h4>{props.rental.borrower.username}</h4>
       <p>
-          {props.rental.notes}
+          {props.rental.tool.owner.username}
       </p>
       <Image src={image} fluid={true}/>
     </Modal.Body>
@@ -52,7 +52,7 @@ function MyRentalDetail({rental, user}) {
   return (
     <>
       <Button variant="outline-primary" size="sm" onClick={() => setModalShow(true)}>
-        Details
+        Rental Details
       </Button>
 
       <MyVerticallyCenteredModal

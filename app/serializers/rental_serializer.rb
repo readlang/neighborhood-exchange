@@ -1,19 +1,22 @@
 class RentalSerializer < ActiveModel::Serializer
-  attributes :id, :tool_id, :borrower_id, :returned, :borrower_notes, :owner_notes, :borrower, :tool, :owner
+  attributes :id, :tool_id, :borrower_id, :returned, :borrower_notes, :owner_notes  # :borrower_name, :tool_name, :owner
 
-  def borrower  
-    "#{self.object.borrower.username}"
-  end
+  belongs_to :borrower  
+  belongs_to :tool
 
-  def tool
-    "#{self.object.tool.name}"
-  end
+  # def borrower_name  
+  #   self.object.borrower.username
+  # end
 
-  def owner
-    "#{self.object.tool.owner.username}"
-  end
+  # def tool_name
+  #   self.object.tool.name
+  # end
 
-  belongs_to :borrower
+  # def owner
+  #   self.object.tool.owner.username
+  # end
+
+  
 
 end
 

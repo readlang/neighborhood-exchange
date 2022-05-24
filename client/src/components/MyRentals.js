@@ -25,26 +25,28 @@ function MyRentals({user}) {
         fetch(`/users/${user.id}/borrowed`)
         .then(r => r.json())
         .then(d => setBorrowed(d))
-    }, [])
+    }, [user.id])
 
     useEffect(() =>{
         fetch(`/users/${user.id}/lent`)
         .then(r => r.json())
         .then(d => setLentOut(d))
-    }, [])
+    }, [user.id])
+
+    console.log(borrowed)
+    console.log(lentOut)
 
     return(
         <>
             <h2 style={title}>Borrowed from Neighbors</h2>
             <div style={list} > 
-                {borrowed.map(rental => <MyRentalCard rental={rental} key={rental.id} /> ) }
+                {borrowed.map(rental => <MyRentalCard key={rental.id} rental={rental} user={user}  /> ) }
             </div>
             <h2 style={title}>Lent out to Neighbors</h2>
             <div style={list} > 
-                {lentOut.map(rental => <MyRentalCard rental={rental} key={rental.id} /> ) }
+                {lentOut.map(rental => <MyRentalCard key={rental.id} rental={rental} user={user} /> ) }
             </div>
         </>
-        
     )
 }
 export default MyRentals;

@@ -3,27 +3,27 @@ class RentalsController < ApplicationController
     #get /rentals - get all rentals
     def index
         rentals = Rental.all
-        render json: rentals, status: :ok
+        render json: rentals, include: ['borrower', 'tool', 'tool.owner' ], status: :ok
     end
 
-    # get "/users/:user_id/borrowed" - gets Borrowed rentals - uses custom serializer
+    # get "/users/:user_id/borrowed" - gets rentals Borrowed from Neighbors
     def user_borrowed
         user = User.find_by(id: params[:user_id])
         borrowed = user.rentals
-        render json: borrowed, each_serializer: BorrowedSerializer, status: :ok #custom serializer
+        render json: borrowed, include: ['borrower', 'tool', 'tool.owner'], status: :ok #deleted custom serializer - "each_serializer: BorrowedSerializer,"
     end
 
-    # get "/users/:user_id/lent" - gets Lended rentals
+    # get "/users/:user_id/lent" - gets rentals Lended out to neighbors
     def user_lent
         user = User.find_by(id: params[:user_id])
         owned_tools = user.tools #returns a "collection"
-        lent_tools = []
+        lent_rental = []
         owned_tools.each do |tool|
             tool.rentals.each do |rental|
-                lent_tools.push( rental )
+                lent_rental.push( rental )
             end
         end
-        render json: lent_tools, status: :ok
+        render json: lent_rental, include: ['borrower', 'tool', 'tool.owner'], status: :ok 
     end
 
 
