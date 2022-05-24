@@ -10,7 +10,7 @@ class RentalsController < ApplicationController
     def user_borrowed
         user = User.find_by(id: params[:user_id])
         borrowed = user.rentals
-        render json: borrowed, status: :ok
+        render json: borrowed, each_serializer: BorrowedSerializer, status: :ok #custom serializer
     end
 
     # get "/users/:user_id/lent" - gets Lended rentals
