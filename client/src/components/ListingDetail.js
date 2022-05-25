@@ -2,6 +2,7 @@ import {useState} from "react";
 import Modal from 'react-bootstrap/Modal'
 import Button from "react-bootstrap/Button";
 import Image from 'react-bootstrap/Image'
+import Alert from 'react-bootstrap/Alert'
 import placeholderImage from '../assets/tool_silhouette.jpg'
 
 function handleRental(tool, user, onHide) {
@@ -28,18 +29,20 @@ function MyVerticallyCenteredModal(props) {
         
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
-            {props.tool.name}
+            Rental Details 
+
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <h4>{props.tool.brand}</h4>
-          <p>
-              {props.tool.notes}
-          </p>
+          
+          <span>{props.tool.brand}</span>
+          <h4>{props.tool.name}</h4>
+          <span>Owner: {props.tool.owner.username}</span>
           <Image src={ props.tool.image ? props.tool.image : placeholderImage } fluid={true}/>
         </Modal.Body>
         <Modal.Footer>
-            <Button onClick={()=>handleRental(props.tool, props.user, props.onHide ) }>&nbsp; Rent this tool &nbsp;</Button> 
+          <Button variant="danger" onClick={props.onHide}> Tool unavailable - currently borrowed </Button>
+          <Button onClick={()=>handleRental(props.tool, props.user, props.onHide ) }>&nbsp; Rent this tool &nbsp;</Button> 
           <Button variant="outline-secondary" onClick={props.onHide}>Close</Button> 
         </Modal.Footer>
       </Modal>
@@ -51,7 +54,7 @@ function ListingDetail({tool, user}) {
     return (
         <>
             <Button variant="outline-primary" size="sm" onClick={() => setModalShow(true)}>
-                Details
+                Rental Details
             </Button>
 
             <MyVerticallyCenteredModal

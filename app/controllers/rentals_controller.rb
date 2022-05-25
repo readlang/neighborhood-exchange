@@ -27,13 +27,13 @@ class RentalsController < ApplicationController
     end
 
 
-    # post /rentals -create a new rental
+    # post /rentals -create a new rental --------------------------------------- add code to find tool, update tool
     def create
         rental = Rental.create!(rental_params)
         render json: rental, status: :created
     end
 
-    # patch /rentals/:id - update a rental
+    # patch /rentals/:id - update a rental -------------------------------------add code to find tool, return tool
     def update
         rental = Rental.find_by(id: params[:id])
         rental.update(edit_params)

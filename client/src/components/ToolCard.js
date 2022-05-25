@@ -7,8 +7,9 @@ function ToolCard({tool, user}) {
         <Card style={{ width: '280px', margin: '10px' }}>
             <Card.Img variant="top" src={tool.image ? tool.image : placeholderImage} />
             <Card.Body>
+                <span> {tool.brand} </span>
                 <Card.Title> {tool.name } </Card.Title>
-                <Card.Text> {tool.brand} </Card.Text>
+                <Card.Text> Owner: {tool.owner.username}</Card.Text>
                 <ListingDetail tool={tool} user={user}/>
             </Card.Body>
         </Card>
