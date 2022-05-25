@@ -3,11 +3,7 @@ import Modal from 'react-bootstrap/Modal'
 import Button from "react-bootstrap/Button";
 import Image from 'react-bootstrap/Image'
 
-import image from './tool_silhouette.jpg'
-// const image = "https://media.istockphoto.com/photos/cordless-yellow-power-drill-isolated-on-a-white-background-picture-id184294297?b=1&k=20&m=184294297&s=170667a&w=0&h=0vSkHk1oHhoVez2poCNRo5dtg7c7W4ACgLxF-PoYiW8="
-
-
-
+import placeholderImage from '../assets/tool_silhouette.jpg'
 
 function handleReturn(rental, onHide) {
   console.log("return this rental", rental)
@@ -43,8 +39,8 @@ function MyVerticallyCenteredModal(props) {
       <p>
           {props.role === "borrower" ? `Owner: ${props.rental.tool.owner.username}` : `Borrower: ${props.rental.borrower.username}`}
       </p>
-      <Image src={ props.rental.tool.image ? props.rental.tool.image : image } fluid={true}/>
-      <img src={image} alt="default tool" />
+      <Image src={ props.rental.tool.image ? props.rental.tool.image : placeholderImage } fluid={true}/>
+      
     </Modal.Body>
     <Modal.Footer>
       <Button onClick={()=>handleReturn(props.rental, props.onHide ) }>&nbsp; Return this rental &nbsp;</Button> 
