@@ -27,15 +27,21 @@ class RentalsController < ApplicationController
     end
 
 
-    # post /rentals -create a new rental --------------------------------------- add code to find tool, update tool
+    # post /rentals -create a new rental --------------------------------------- added tool.update to true
     def create
+        tool = Tool.find_by(id: params[:tool_id])
+        tool.update(rented: true)
         rental = Rental.create!(rental_params)
         render json: rental, status: :created
     end
 
-    # patch /rentals/:id - update a rental -------------------------------------add code to find tool, return tool
+    # patch /rentals/:id - update a rental -------------------------------------added code to find tool, return tool
     def update
         rental = Rental.find_by(id: params[:id])
+        if params[:returned] === true
+            tool = Tool.find_by(id: rental.tool_id)
+            tool.update(rented: false)
+        end
         rental.update(edit_params)
         render json: rental, status: :ok
     end

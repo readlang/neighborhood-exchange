@@ -2,7 +2,6 @@ import {useState} from "react";
 import Modal from 'react-bootstrap/Modal'
 import Button from "react-bootstrap/Button";
 import Image from 'react-bootstrap/Image'
-import Alert from 'react-bootstrap/Alert'
 import placeholderImage from '../assets/tool_silhouette.jpg'
 
 function handleRental(tool, user, onHide) {
