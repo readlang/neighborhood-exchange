@@ -16,7 +16,7 @@ ActiveRecord::Base.connection.reset_pk_sequence!('rentals')
 
 print "Seeding...."
 
-const defaultPassword = BCrypt::Password.create('1234')
+defaultPassword = BCrypt::Password.create('1234')
 
 User.create!([
     { username: "Alice", password_digest: defaultPassword },
@@ -47,7 +47,7 @@ Rental.create!([
     { tool_id: 6, borrower_id: 1, returned: true, borrower_notes: "alice", owner_notes: "owned by frankie" }
 ])
 
-print "Seeding Done"
+print "Seeding Done!"
 
 #   Rentals
 #     t.integer "tool_id"
