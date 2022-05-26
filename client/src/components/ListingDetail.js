@@ -15,6 +15,7 @@ function handleRental(tool, user, onHide) {
   .then(r => r.json())
   .then(data => console.log(data) )  
   onHide()
+  window.location.href = "/rentals";
 }
 
 function MyVerticallyCenteredModal(props) {
@@ -40,8 +41,9 @@ function MyVerticallyCenteredModal(props) {
           <Image src={ props.tool.image ? props.tool.image : placeholderImage } fluid={true}/>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="danger" onClick={props.onHide}> Tool unavailable - currently borrowed </Button>
-          <Button onClick={()=>handleRental(props.tool, props.user, props.onHide ) }>&nbsp; Rent this tool &nbsp;</Button> 
+          { props.tool.rented ? 
+          <Button variant="danger" onClick={props.onHide}> Tool currently out on loan </Button> :
+          <Button onClick={()=>handleRental(props.tool, props.user, props.onHide ) }>&nbsp; Rent this tool &nbsp;</Button>  }
           <Button variant="outline-secondary" onClick={props.onHide}>Close</Button> 
         </Modal.Footer>
       </Modal>
