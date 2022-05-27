@@ -18,7 +18,7 @@ const boxSize = {
   padding: "30px"
 }
 
-function UserPage({setUser}) {
+function UserPage({user, setUser}) {
   const [showLogIn, setShowLogIn] = useState(true);
 
   function handleLogIn(username, password) {
@@ -54,7 +54,7 @@ function UserPage({setUser}) {
           </div> 
         </div>
         <div style = {boxSize} >
-          { showLogIn ? <LogInForm setShowLogIn={setShowLogIn} handleLogIn={handleLogIn} /> : 
+          { showLogIn ? <LogInForm setShowLogIn={setShowLogIn} handleLogIn={handleLogIn} user={user}/> : 
             <SignupForm setShowLogIn={setShowLogIn} handleSignUp={handleSignUp} /> }
         </div>
       </div>

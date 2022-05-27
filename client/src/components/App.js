@@ -27,7 +27,7 @@ function App() {
   }
 
   if ( !user.id ) {
-    return (<UserPage setUser={setUser} />)  
+    return (<UserPage user={user} setUser={setUser} />)  
   } else {
     return (
       <div className="App">

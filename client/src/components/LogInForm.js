@@ -3,7 +3,7 @@ import {useState} from "react"
 import Button from "react-bootstrap/Button";    
 import Form from "react-bootstrap/Form";    
 
-function LogInForm({setShowLogIn, handleLogIn}) {
+function LogInForm({setShowLogIn, handleLogIn, user}) {
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
 
@@ -27,7 +27,8 @@ function LogInForm({setShowLogIn, handleLogIn}) {
       </Form.Group>
 
       <Button variant="primary" type="submit" > Log in </Button>
-      <br/> <hr/> <br/>
+      { user.error === "Invalid username or password" ? <span> &nbsp; {user.error} </span> : <br/> }
+       <hr/> <br/> 
 
       <Button variant="outline-success" onClick={() => setShowLogIn(false)} >
         Sign up for account
