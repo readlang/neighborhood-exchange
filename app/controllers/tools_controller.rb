@@ -1,4 +1,5 @@
 class ToolsController < ApplicationController
+    rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
 
     # get /tools - get all tools for neighbor tool page
     def index
@@ -38,4 +39,9 @@ class ToolsController < ApplicationController
     def tool_params
         params.permit(:name, :brand, :owner_id, :image, :notes)
     end
+
+    def render_unprocessable_entity_response(exception)
+        render json: { errors: exception.record.errors.full_messages }, status: :unprocessable_entity
+    end
+
 end

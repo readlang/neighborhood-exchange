@@ -7,6 +7,7 @@ class User < ApplicationRecord
 
     has_many :tools, foreign_key: :owner_id
 
-    
 
+    validates :username, presence: true
+    
 end
