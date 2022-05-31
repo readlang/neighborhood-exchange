@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-    # skip_before_action :authorize, only: :create
+    skip_before_action :authorize, only: [:create]
 
     # LogIn - creates a session cookie
     def create
@@ -17,5 +17,4 @@ class SessionsController < ApplicationController
         session.delete :user_id
         head :no_content
     end
-
 end

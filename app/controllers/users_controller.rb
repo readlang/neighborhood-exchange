@@ -1,8 +1,7 @@
 class UsersController < ApplicationController
-    
-    # skip_before_action :authorize, only: :create
+    skip_before_action :authorize, only: [ :create, :show ]
 
-    # delete before deploying!!! - this shows all the users
+    # delete before deploying! - this shows all the users
     def index
         render json: User.all, status: :ok
     end
