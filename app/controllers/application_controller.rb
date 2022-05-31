@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::API
   include ActionController::Cookies
 
-  before_action :authorize # comment this out for testing
+  before_action :authorize # checks if session cookie includes user_id on every action (except where skipped)
 
   
   private

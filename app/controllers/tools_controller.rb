@@ -1,5 +1,6 @@
 class ToolsController < ApplicationController
     rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
+    rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
 
     # get /tools - get all tools for neighbor tool page
     def index
@@ -9,7 +10,7 @@ class ToolsController < ApplicationController
 
     # get /users/:user_id/tools - get all tools from particular user for my tools page 
     def user_tools
-        user = User.find_by(id: params[:user_id])
+        user = User.find_by!(id: params[:user_id])
         tools = user.tools
         render json: tools, status: :ok
     end
@@ -42,6 +43,10 @@ class ToolsController < ApplicationController
 
     def render_unprocessable_entity_response(exception)
         render json: { errors: exception.record.errors.full_messages }, status: :unprocessable_entity
+    end
+
+    def render_not_found_response(exception)
+        render json: { error: "User not found" }, status: :not_found
     end
 
 end
