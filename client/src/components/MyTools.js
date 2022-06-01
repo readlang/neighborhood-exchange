@@ -9,7 +9,7 @@ const list = {
     maxWidth: "900px"
 }
 
-function MyTools({user}) {
+function MyTools({user, setError}) {
     const [myTools, setMyTools] = useState([]);
     const [reload, setReload] = useState({});
 
@@ -25,8 +25,8 @@ function MyTools({user}) {
 
     return(
         <div style={list} > 
-            <MyToolCard user={user} triggerUpdate={triggerUpdate}/>
-            {myTools.map(tool => <MyToolCard tool={tool} key={tool.id} triggerUpdate={triggerUpdate} /> ) }
+            <MyToolCard user={user} triggerUpdate={triggerUpdate} setError={setError} />
+            {myTools.map(tool => <MyToolCard tool={tool} key={tool.id} triggerUpdate={triggerUpdate} setError={setError} /> ) }
         </div>
     )
 }

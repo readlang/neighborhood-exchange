@@ -6,9 +6,11 @@ import NavBar from "./NavBar";
 import Neighborhood from "./Neighborhood";
 import MyRentals from "./MyRentals";
 import MyTools from "./MyTools"
+import ErrorAlert from "./ErrorAlert";
 
 function App() {
   const [user, setUser] = useState({});
+  const [error, setError] = useState(null);
 
   //  Session LogIn - for return visits
   useEffect(() =>{
@@ -16,6 +18,9 @@ function App() {
     .then(r => r.json())
     .then(d => setUser(d)) //this will return user
   }, [])
+
+
+  console.log("App error:", error)
 
   function logOut() {
     console.log("logout")
@@ -32,6 +37,7 @@ function App() {
     return (
       <div className="App">
         <NavBar user={user} logOut={logOut}  />
+        <ErrorAlert error={error} />
         <Switch>
           <Route exact path="/">
             <Neighborhood user={user} />
@@ -42,7 +48,7 @@ function App() {
           </Route>
 
           <Route exact path="/tools">
-            < MyTools user={user} />
+            < MyTools user={user} setError={setError} />
           </Route>
         </Switch>  
       </div>

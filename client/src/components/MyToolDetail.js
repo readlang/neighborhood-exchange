@@ -10,7 +10,7 @@ const layout = {
   justifyContent: "space-around",
 }
 
-function MyVerticallyCenteredModal({props, user, triggerUpdate, tool}) {
+function MyVerticallyCenteredModal({props, user, triggerUpdate, tool, setError }) {
   const [name, setName  ] = useState( tool.name ? tool.name : "" )
   const [brand, setBrand] = useState( tool.brand ? tool.brand : "" )
   const [image, setImage] = useState( tool.image ? tool.image : "" )
@@ -23,7 +23,10 @@ function MyVerticallyCenteredModal({props, user, triggerUpdate, tool}) {
       body: JSON.stringify({ name: name, brand: brand, owner_id: user.id, image: image, notes: notes })
     })
     .then(r => r.json())
-    .then(data => console.log(data) ) 
+    .then(data => {
+      console.log("data:", data)
+      setError(data.errors)
+      } ) 
     .then(triggerUpdate) 
     props.onHide()
   }
@@ -35,7 +38,10 @@ function MyVerticallyCenteredModal({props, user, triggerUpdate, tool}) {
       body: JSON.stringify({ name: name, brand: brand, image: image, notes: notes })
     })
     .then(response => response.json())
-    .then(data => console.log(data) ) 
+    .then(data => {
+      console.log("data:", data)
+      setError(data.errors)
+    } ) 
     .then(triggerUpdate) 
     props.onHide()
   }
@@ -96,7 +102,7 @@ function MyVerticallyCenteredModal({props, user, triggerUpdate, tool}) {
   );
 }
   
-function MyToolDetail({user, triggerUpdate, tool}) {
+function MyToolDetail({user, triggerUpdate, tool, setError }) {
   const [modalShow, setModalShow] = useState(false);
 
   return (
@@ -107,7 +113,7 @@ function MyToolDetail({user, triggerUpdate, tool}) {
 
       <MyVerticallyCenteredModal
         props={ {show: modalShow, onHide: () => setModalShow(false) } }
-        user={user} triggerUpdate={triggerUpdate} tool={tool}
+        user={user} triggerUpdate={triggerUpdate} tool={tool} setError={setError}
       />
     </>
   );
