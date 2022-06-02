@@ -24,7 +24,7 @@ class ToolsController < ApplicationController
     # patch /tools/:id - update a tool
     def update
         tool = Tool.find_by!(id: params[:id]) 
-        tool.update(tool_params)
+        tool.update!(tool_params)
         render json: tool, status: :ok
     end
 

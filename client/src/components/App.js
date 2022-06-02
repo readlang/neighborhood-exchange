@@ -40,7 +40,7 @@ function App() {
         <ErrorAlert error={error} />
         <Switch>
           <Route exact path="/">
-            <Neighborhood user={user} />
+            <Neighborhood user={user} setError={setError} />
           </Route>
 
           <Route exact path="/rentals">

@@ -9,7 +9,7 @@ const imageStyle = {
 }
 
 
-function ToolCard({tool, user}) {
+function ToolCard({tool, user, setError}) {
     return(
         <Card style={{ width: '280px', margin: '10px' }}>
             {tool.rented ? <Card.Header>Not Available</Card.Header> : <Card.Header as="h5">Available</Card.Header> }
@@ -21,7 +21,7 @@ function ToolCard({tool, user}) {
                 <Card.Title> {tool.name } </Card.Title>
                 <Card.Text> Owner: {tool.owner.username}</Card.Text>
                 
-                <ListingDetail tool={tool} user={user}/>
+                <ListingDetail tool={tool} user={user} setError={setError}/>
             </Card.Body>
         </Card>
     )

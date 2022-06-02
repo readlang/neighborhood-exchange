@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import Alert from 'react-bootstrap/Alert'
-import Button from "react-bootstrap/Button";
+// import Button from "react-bootstrap/Button";
 
 function ErrorAlert({error}) {
     const [show, setShow] = useState(false);      // starts life with this condition
@@ -23,7 +23,8 @@ function ErrorAlert({error}) {
           </Alert>
         );
       }
-      return <Button size="sm" onClick={() => setShow(true)}>Show Alert</Button>;
+      // return <Button size="sm" onClick={() => setShow(true)}>Show Alert</Button>;
+      return null;
 
 }
 

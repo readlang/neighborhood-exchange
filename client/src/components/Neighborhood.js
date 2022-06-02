@@ -9,7 +9,7 @@ const list = {
     maxWidth: "900px"
 }
 
-function Neighborhood({user}) {
+function Neighborhood({user, setError }) {
     const [tools, setTools] = useState([])
 
     useEffect(() =>{
@@ -20,7 +20,7 @@ function Neighborhood({user}) {
 
     return(
         <div style={list} > 
-            {tools.map(tool => <ToolCard tool={tool} key={tool.id} user={user} /> ) }
+            {tools.map(tool => <ToolCard tool={tool} key={tool.id} user={user} setError={setError} /> ) }
         </div>
     )
 }
