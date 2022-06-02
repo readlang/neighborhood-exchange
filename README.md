@@ -1,4 +1,4 @@
-# Neighborhood Exchange - Flatiron School Phase 4 Project
+# Neighborhood Exchange - Flatiron School Project
 <br />  
 
 ## Description
