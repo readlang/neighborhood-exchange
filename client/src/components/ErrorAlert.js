@@ -19,8 +19,9 @@ function ErrorAlert({error}) {
         return (
           <Alert variant="danger" onClose={() => setShow(false)} dismissible>
             <Alert.Heading>Error </Alert.Heading>
-            { error.map( text=>( <p key={text}> {text} </p> ) )}
-            
+            { typeof(error)==="string" ? <p>{error}</p> :  
+              error.map( text => (<p key={text}>{text}</p>) )
+            }
           </Alert>
         );
       }

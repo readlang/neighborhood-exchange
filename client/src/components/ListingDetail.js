@@ -9,7 +9,7 @@ function handleRental(tool, user, onHide, setError) {
 
   if (tool.owner.id === user.id ) {
     
-    setError(`Current user (${user.username}) is tool owner (${tool.owner.username}).`)
+    setError(`Current user (${user.username}) is also tool owner (${tool.owner.username}).`)
   } else {
   fetch("/rentals", {
     method: 'post',

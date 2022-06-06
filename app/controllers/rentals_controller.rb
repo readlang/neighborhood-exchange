@@ -10,7 +10,7 @@ class RentalsController < ApplicationController
     def user_borrowed
         user = User.find_by(id: params[:user_id])
         borrowed = user.rentals
-        render json: borrowed, include: ['borrower', 'tool', 'tool.owner'], status: :ok #deleted custom serializer - "each_serializer: BorrowedSerializer,"
+        render json: borrowed, include: ['borrower', 'tool', 'tool.owner'], status: :ok 
     end
 
     # get "/users/:user_id/lent" - gets rentals Lended out to neighbors
@@ -27,7 +27,7 @@ class RentalsController < ApplicationController
     end
 
 
-    # post /rentals -create a new rental --------------------------------------- added tool.update to true
+    # post /rentals -create a new rental 
     def create
         tool = Tool.find_by(id: params[:tool_id])
         tool.update(rented: true)
@@ -35,7 +35,7 @@ class RentalsController < ApplicationController
         render json: rental, status: :created
     end
 
-    # patch /rentals/:id - update a rental -------------------------------------added code to find tool, return tool
+    # patch /rentals/:id - update a rental 
     def update
         rental = Rental.find_by(id: params[:id])
         if params[:returned] === true
