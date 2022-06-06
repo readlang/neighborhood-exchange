@@ -43,7 +43,7 @@ function MyVerticallyCenteredModal(props) {
         
         <span>{props.tool.brand}</span>
         <h4>{props.tool.name}</h4>
-        <span>Owner: {props.tool.owner.username}</span>
+        <p>Owner: {props.tool.owner.username}</p>
         <Image src={ props.tool.image ? props.tool.image : placeholderImage } fluid={true}/>
       </Modal.Body>
       <Modal.Footer>
