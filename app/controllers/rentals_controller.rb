@@ -9,7 +9,14 @@ class RentalsController < ApplicationController
     # get "/users/:user_id/borrowed" - gets rentals Borrowed from Neighbors
     def user_borrowed
         user = User.find_by(id: params[:user_id])
-        borrowed = user.rentals
+        borrowed = []
+        user.rentals.each do |rental|
+            if rental.returned === false
+                borrowed.unshift ( rental )
+            else
+                borrowed.push ( rental )
+            end
+        end
         render json: borrowed, include: ['borrower', 'tool', 'tool.owner'], status: :ok 
     end
 
@@ -20,7 +27,11 @@ class RentalsController < ApplicationController
         lent_rental = []
         owned_tools.each do |tool|
             tool.rentals.each do |rental|
-                lent_rental.push( rental )
+                if rental.returned === false
+                    lent_rental.unshift( rental )
+                else
+                    lent_rental.push( rental )    
+                end
             end
         end
         render json: lent_rental, include: ['borrower', 'tool', 'tool.owner'], status: :ok 
