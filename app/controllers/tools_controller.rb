@@ -4,7 +4,14 @@ class ToolsController < ApplicationController
 
     # get /tools - get all tools for neighbor tool page
     def index
-        tools = Tool.all
+        tools = []
+        Tool.all.each do |tool|
+            if tool.rented
+                tools.push (tool)
+            else
+                tools.unshift(tool)
+            end
+        end
         render json: tools, status: :ok
     end
 
@@ -46,7 +53,7 @@ class ToolsController < ApplicationController
     end
 
     def render_not_found_response(exception)
-        render json: { error: "User not found" }, status: :not_found
+        render json: { errors: "User not found" }, status: :not_found
     end
 
 end
