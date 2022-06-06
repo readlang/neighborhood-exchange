@@ -6,7 +6,9 @@ class Tool < ApplicationRecord
 
     belongs_to :owner, class_name: "User"
 
-    validates :name, presence: true
-    validates :owner_id, presence: true # this one is unnecessary?
+
+    validates :name, presence: true, length: {in: 2..30 }
+    validates :brand, presence: true, length: {in: 2..30 }
+    validates :owner, presence: true # checks if owner exists and that FK exists
 
 end

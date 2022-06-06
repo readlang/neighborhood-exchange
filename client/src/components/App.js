@@ -32,7 +32,12 @@ function App() {
   }
 
   if ( !user.id ) {
-    return (<UserPage user={user} setUser={setUser} />)  
+    return (
+      <>
+        <ErrorAlert error={error} />
+        <UserPage user={user} setUser={setUser} setError={setError} />
+      </>
+    )  
   } else {
     return (
       <div className="App">

@@ -8,6 +8,6 @@ class User < ApplicationRecord
     has_many :tools, foreign_key: :owner_id
 
 
-    validates :username, presence: true
+    validates :username, presence: true, length: {in: 2..30 }
     
 end

@@ -18,7 +18,7 @@ const boxSize = {
   padding: "30px"
 }
 
-function UserPage({user, setUser}) {
+function UserPage({user, setUser, setError}) {
   const [showLogIn, setShowLogIn] = useState(true);
 
   function handleLogIn(username, password) {
@@ -29,7 +29,10 @@ function UserPage({user, setUser}) {
       body: JSON.stringify({username: username, password: password})
     })
     .then(r => r.json())
-    .then(data => setUser(data) )  
+    .then(data => {
+      setError(data.errors)  
+      setUser(data)
+    } )  
   }
 
   function handleSignUp(username, password, passwordConfirm, image, location) {
@@ -42,7 +45,10 @@ function UserPage({user, setUser}) {
       })
     })
     .then(r => r.json())
-    .then(data => setUser(data) )  
+    .then(data => {
+      setError(data.errors)
+      setUser(data)
+    } )  
   }
 
   return (

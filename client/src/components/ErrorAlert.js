@@ -18,7 +18,8 @@ function ErrorAlert({error}) {
     if (show && error ) {     // show must be true AND error must not be null (default error is null)
         return (
           <Alert variant="danger" onClose={() => setShow(false)} dismissible>
-            <Alert.Heading>error: {error} </Alert.Heading>
+            <Alert.Heading>Error </Alert.Heading>
+            { error.map( text=>( <p key={text}> {text} </p> ) )}
             
           </Alert>
         );
