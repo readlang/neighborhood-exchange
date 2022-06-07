@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   get "/users/:user_id/lent", to: "rentals#user_lent"
 
   get "/users/:user_id/tools", to: "tools#user_tools"
+
+  get "/tools/search/:search_term", to: "tools#search"
   
   get "/users", to: "users#index" #delete before deployment
   post "/signup", to: "users#create"

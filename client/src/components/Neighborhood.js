@@ -1,5 +1,6 @@
 import {useState, useEffect} from "react"
 import ToolCard from "./ToolCard"
+import NeighborhoodSearch from "./NeighborhoodSearch"
 
 const list = {
     margin: "20px auto 0 auto", //auto = centered horizontally
@@ -19,9 +20,12 @@ function Neighborhood({user, setError }) {
     }, [])
 
     return(
+        <>
+        <NeighborhoodSearch setTools={setTools} />
         <div style={list} > 
             {tools.map(tool => <ToolCard tool={tool} key={tool.id} user={user} setError={setError} /> ) }
         </div>
+        </>
     )
 }
 export default Neighborhood;
