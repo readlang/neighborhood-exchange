@@ -4,14 +4,7 @@ class ToolsController < ApplicationController
 
     # get /tools - get all tools for neighbor tool page
     def index
-        tools = []
-        Tool.all.each do |tool|
-            if tool.rented
-                tools.push (tool)
-            else
-                tools.unshift(tool)
-            end
-        end
+        tools = Tool.all_sorted
         render json: tools, status: :ok
     end
 
@@ -40,11 +33,6 @@ class ToolsController < ApplicationController
         tool = Tool.find_by(id: params[:id])
         tool.destroy
         render json: {deleted: tool}, status: :ok
-    end
-
-    def search_by_tool_name
-        tools = Tool.search(params[:tool_name])
-        render json: tools, status: :ok
     end
 
     private

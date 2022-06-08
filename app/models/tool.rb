@@ -11,7 +11,16 @@ class Tool < ApplicationRecord
     validates :brand, presence: true, length: {in: 2..30 }
     validates :owner, presence: true # checks if owner exists and that FK exists
 
-    def self.search(tool_name)
-        self.where(name: tool_name)
+    def self.all_sorted
+        tools = []
+        self.all.each do |tool|
+            if tool.rented
+                tools.push (tool)
+            else
+                tools.unshift(tool)
+            end
+        end
+        return tools
     end
+
 end
