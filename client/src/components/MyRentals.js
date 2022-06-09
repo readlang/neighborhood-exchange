@@ -21,6 +21,14 @@ function MyRentals({user}) {
     const [borrowed, setBorrowed] = useState([])
     const [lentOut, setLentOut] = useState([])
 
+    function updateState(role, id) {
+        if (role === "borrower") {
+            setBorrowed(borrowed.map(rental => ( rental.id === id ? {...rental, returned: true} : rental ) ) )
+        } else {
+            setLentOut(lentOut.map(rental => (rental.id === id ? {...rental, returned: true} : rental ) ) )
+        }
+    }
+
     useEffect(() =>{
         fetch(`/users/${user.id}/borrowed`)
         .then(r => r.json())
@@ -40,12 +48,12 @@ function MyRentals({user}) {
         <>
             <h2 style={title}>Borrowed from Neighbors</h2>
             <div style={list} > 
-                {borrowed.map(rental => <MyRentalCard key={rental.id} rental={rental} role="borrower" /> ) }
+                {borrowed.map(rental => <MyRentalCard key={rental.id} rental={rental} role="borrower" updateState={updateState} /> ) }
             </div>
 
             <h2 style={title}>Lent out to Neighbors</h2>
             <div style={list} > 
-                {lentOut.map(rental => <MyRentalCard key={rental.id} rental={rental} role="lender" /> ) }
+                {lentOut.map(rental => <MyRentalCard key={rental.id} rental={rental} role="lender" updateState={updateState} /> ) }
             </div>
         </>
     )

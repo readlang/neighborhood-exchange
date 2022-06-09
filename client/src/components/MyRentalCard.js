@@ -8,7 +8,7 @@ const imageStyle = {
     margin: "0 auto"
 }
 
-function MyRentalCard({rental, role}) {
+function MyRentalCard({rental, role, updateState}) {
     return(
         <Card style={{ width: '280px', margin: '10px' }}>
             {rental.returned ? <Card.Header>Returned </Card.Header> : <Card.Header as="h5">Active Rental </Card.Header> }
@@ -22,7 +22,7 @@ function MyRentalCard({rental, role}) {
                 <span> { rental.tool.brand } </span>
                 <Card.Title> {rental.tool.name } </Card.Title>
                 <Card.Text> {role === "borrower" ? `Owner: ${rental.tool.owner.username}` : `Borrower: ${rental.borrower.username}` } </Card.Text>
-                <MyRentalDetail rental={rental} role={role} />
+                <MyRentalDetail rental={rental} role={role} updateState={updateState} />
             </Card.Body>
         </Card>
     )

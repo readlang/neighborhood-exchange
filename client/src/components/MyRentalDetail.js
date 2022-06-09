@@ -5,7 +5,7 @@ import Image from 'react-bootstrap/Image'
 
 import placeholderImage from '../assets/tool_silhouette.jpg'
 
-function handleReturn(rental, onHide) {
+function handleReturn(rental, onHide, updateState, role) {
   console.log("return this rental", rental)
 
   fetch (`/rentals/${rental.id}`, {
@@ -14,7 +14,11 @@ function handleReturn(rental, onHide) {
     body: JSON.stringify({ returned: true })
   })
   .then(r => r.json())
-  .then(data => console.log(data) )  
+  .then(data => {
+    console.log(data)
+    updateState(role, rental.id)
+    } 
+  )  
   onHide()
 
 }
@@ -22,7 +26,7 @@ function handleReturn(rental, onHide) {
 function MyVerticallyCenteredModal(props) {
   return (
     <Modal
-      {...props}
+      {...{show: props.show, onHide: props.onHide }}
       size="lg"
       aria-labelledby="contained-modal-title-vcenter"
       centered
@@ -43,14 +47,14 @@ function MyVerticallyCenteredModal(props) {
       
     </Modal.Body>
     <Modal.Footer>
-      <Button onClick={()=>handleReturn(props.rental, props.onHide ) }>&nbsp; Return this rental &nbsp;</Button> 
+      <Button onClick={()=>handleReturn(props.rental, props.onHide, props.updateState, props.role ) }>&nbsp; Return this rental &nbsp;</Button> 
       <Button variant="outline-secondary" onClick={props.onHide}>Close</Button> 
     </Modal.Footer>
   </Modal>
   );
 }
   
-function MyRentalDetail({rental, role}) {
+function MyRentalDetail({rental, role, updateState}) {
   const [modalShow, setModalShow] = useState(false);
   return (
     <>
@@ -60,7 +64,7 @@ function MyRentalDetail({rental, role}) {
 
       <MyVerticallyCenteredModal
         show={modalShow} onHide={() => setModalShow(false)}
-        rental={rental} role={role}
+        rental={rental} role={role} updateState={updateState}
       />
     </>
   );
