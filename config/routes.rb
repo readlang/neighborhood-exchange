@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
   get "/users/:user_id/tools", to: "tools#user_tools"
   
-  get "/users", to: "users#index" #delete before deployment
+  get "/users", to: "users#index" 
   post "/signup", to: "users#create"
   get "/me", to: "users#show"
   patch "/users/:id", to: "users#update"
