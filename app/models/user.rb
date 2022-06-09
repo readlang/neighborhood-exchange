@@ -27,9 +27,9 @@ class User < ApplicationRecord
         self.tools.each do |tool|
             tool.rentals.each do |rental|
                 if rental.returned === false
-                    lent_rental.unshift( rental )
+                    lent_rentals.unshift( rental )
                 else
-                    lent_rental.push( rental )    
+                    lent_rentals.push( rental )    
                 end
             end
         end

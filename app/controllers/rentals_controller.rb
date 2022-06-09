@@ -16,8 +16,8 @@ class RentalsController < ApplicationController
     # get "/users/:user_id/lent" - gets rentals Lended out to neighbors
     def user_lent
         user = User.find_by(id: params[:user_id])
-        lent_rental = user.lent_rentals_sorted
-        render json: lent_rental, include: ['borrower', 'tool', 'tool.owner'], status: :ok 
+        lent_rentals = user.lent_rentals_sorted
+        render json: lent_rentals, include: ['borrower', 'tool', 'tool.owner'], status: :ok 
     end
 
     # post /rentals -create a new rental 
