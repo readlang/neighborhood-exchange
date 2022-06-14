@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
     skip_before_action :authorize, only: [ :create, :show ]
 
-    # delete before deploying! - this shows all the users
+    
     def index
         render json: User.all, status: :ok
     end
@@ -32,6 +32,15 @@ class UsersController < ApplicationController
         user = User.find_by(id: params[:id])
         user.update(edit_params)
         render json: user, status: :ok
+    end
+
+    def biggest_borrower
+        render json: User.biggest_borrower, status: :ok
+    end
+
+    def borrowed_tools
+        user = User.find_by!(id: params[:id])
+        render json: user.unique_borrowed_tools, status: :ok
     end
 
     private

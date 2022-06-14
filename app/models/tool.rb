@@ -6,21 +6,22 @@ class Tool < ApplicationRecord
 
     belongs_to :owner, class_name: "User"
 
-
     validates :name, presence: true, length: {in: 2..30 }
     validates :brand, presence: true, length: {in: 2..30 }
     validates :owner, presence: true # checks if owner exists and that FK exists
 
     def self.all_sorted
         tools = []
-        self.all.each do |tool|
-            if tool.rented
-                tools.push (tool)
-            else
-                tools.unshift(tool)
-            end
-        end
+        self.all.each{|tool| tool.rented ? tools.push(tool) : tools.unshift(tool) }
         return tools
+    end
+
+    def self.search(tool_name)
+        self.all.find_all{ |tool| tool.name.downcase.include? (tool_name.downcase) } 
+    end
+
+    def self.most_popular
+        self.all.max_by{|tool| tool.rentals.length}
     end
 
 end

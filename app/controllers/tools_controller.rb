@@ -30,9 +30,19 @@ class ToolsController < ApplicationController
 
     #delete /tools/:id - delete a tool
     def destroy
-        tool = Tool.find_by(id: params[:id])
+        tool = Tool.find_by!(id: params[:id])
         tool.destroy
         render json: {deleted: tool}, status: :ok
+    end
+
+    def search
+        result = Tool.search(params[:tool_name])
+        render json: result, status: :ok
+    end
+
+    def most_popular
+        tool = Tool.most_popular
+        render json: tool, status: :ok
     end
 
     private

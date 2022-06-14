@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   
   resources :rentals
-  resources :tools
+  resources :tools, except: :show 
 
   get "/users/:user_id/borrowed", to: "rentals#user_borrowed"
   get "/users/:user_id/lent", to: "rentals#user_lent"
@@ -15,6 +15,15 @@ Rails.application.routes.draw do
 
   post "/login", to: "sessions#create"
   delete "/logout", to: "sessions#destroy"
+
+  #these have been added later as part of the review or practice:
+  get "/users/biggest_borrower", to: "users#biggest_borrower"
+
+  get "/tools/search/:tool_name", to: "tools#search"
+
+  get "/users/:id/borrowed_tools", to: "users#borrowed_tools" 
+
+  get "/tools/most_popular", to: "tools#most_popular"
 
   # Routing logic: fallback requests for React Router.
   # Leave this here to help deploy your app later!
