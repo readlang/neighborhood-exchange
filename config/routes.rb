@@ -25,6 +25,8 @@ Rails.application.routes.draw do
 
   get "/tools/most_popular", to: "tools#most_popular"
 
+  get "/users/search/:name", to: "users#search"
+
   # Routing logic: fallback requests for React Router.
   # Leave this here to help deploy your app later!
   get "*path", to: "fallback#index", constraints: ->(req) { !req.xhr? && req.format.html? }

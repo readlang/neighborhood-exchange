@@ -20,7 +20,7 @@ function ToolCard({tool, user, setError}) {
                 <span> {tool.brand} </span>
                 <Card.Title> {tool.name } </Card.Title>
                 <Card.Text> Owner: {tool.owner.username}</Card.Text>
-                
+                <p> <small>Borrowers: {tool.borrower_count} &nbsp;({tool.unique_borrower_count} unique) </small> </p>                
                 <ListingDetail tool={tool} user={user} setError={setError}/>
             </Card.Body>
         </Card>

@@ -43,6 +43,10 @@ class UsersController < ApplicationController
         render json: user.unique_borrowed_tools, status: :ok
     end
 
+    def search
+        render json: User.search(params[:name]), status: :ok
+    end
+
     private
 
     def user_params

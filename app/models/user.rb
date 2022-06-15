@@ -42,4 +42,13 @@ class User < ApplicationRecord
 
     end
 
+    def self.search(name)
+        user = self.all.find{|user| user.username.downcase == name.downcase}
+        if user
+            return {user: user.username, tools: user.tools}    
+        else
+            {user: nil, tools: [] }
+        end
+    end
+
 end
