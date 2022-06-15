@@ -35,16 +35,6 @@ class ToolsController < ApplicationController
         render json: {deleted: tool}, status: :ok
     end
 
-    def search
-        result = Tool.search(params[:tool_name])
-        render json: result, status: :ok
-    end
-
-    def most_popular
-        tool = Tool.most_popular
-        render json: tool, status: :ok
-    end
-
     private
 
     def tool_params

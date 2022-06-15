@@ -15,13 +15,4 @@ class Tool < ApplicationRecord
         self.all.each{|tool| tool.rented ? tools.push(tool) : tools.unshift(tool) }
         return tools
     end
-
-    def self.search(tool_name)
-        self.all.find_all{ |tool| tool.name.downcase.include? (tool_name.downcase) } 
-    end
-
-    def self.most_popular
-        self.all.max_by{|tool| tool.rentals.length}
-    end
-
 end

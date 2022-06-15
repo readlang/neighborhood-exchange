@@ -34,19 +34,6 @@ class UsersController < ApplicationController
         render json: user, status: :ok
     end
 
-    def biggest_borrower
-        render json: User.biggest_borrower, status: :ok
-    end
-
-    def borrowed_tools
-        user = User.find_by!(id: params[:id])
-        render json: user.unique_borrowed_tools, status: :ok
-    end
-
-    def search
-        render json: User.search(params[:name]), status: :ok
-    end
-
     private
 
     def user_params
