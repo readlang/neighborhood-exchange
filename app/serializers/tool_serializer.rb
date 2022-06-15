@@ -11,4 +11,6 @@ class ToolSerializer < ActiveModel::Serializer
     object.borrowers.uniq.length
   end
 
+  # "object" functions similarly to self - here it refers to a tool instance
+
 end

@@ -1,5 +1,6 @@
 import {useState, useEffect} from "react"
 import ToolCard from "./ToolCard"
+import New from "./New"
 
 const list = {
     margin: "20px auto 0 auto", //auto = centered horizontally
@@ -64,6 +65,7 @@ function Neighborhood({user, setError }) {
             <ul>
             { searchReturn.user ? searchReturn.tools.map(x => <li key={x.id}> {x.name}</li> ) : null }
             </ul>
+            <New />
         </>
     )
 }

@@ -39,6 +39,10 @@ class RentalsController < ApplicationController
         render json: rental, status: :ok
     end
 
+    def search
+        render json: Rental.search(params[:search_term]), status: :ok
+    end
+
     private
 
     def rental_params
