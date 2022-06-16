@@ -15,4 +15,8 @@ class Tool < ApplicationRecord
         self.all.each{|tool| tool.rented ? tools.push(tool) : tools.unshift(tool) }
         return tools
     end
+
+    def self.search(search_term)
+        self.all.filter{|tool| tool.name.downcase.include?(search_term.downcase) || tool.brand.downcase.include?(search_term.downcase) || tool.owner.username.downcase.include?(search_term.downcase) }
+    end
 end

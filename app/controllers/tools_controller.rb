@@ -35,6 +35,12 @@ class ToolsController < ApplicationController
         render json: {deleted: tool}, status: :ok
     end
 
+    # search /tools/search/:search_term
+    def search
+        results = Tool.search( params[:search_term] )
+        render json: results, status: :ok
+    end
+
     private
 
     def tool_params
